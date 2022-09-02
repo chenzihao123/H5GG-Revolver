@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <meta name="viewport" content="width=320, initial-scale=1">
+    <meta charset="utf-8">
+    <style>
+      body, html {
+        min-width: 100%;
+        min-height: 100%;
+        margin: 0;
+        padding: 0;
+        font: Fantasy 14px;
+        font-weight:700;
+        color:black;
+        
+      }
+      .lan
+      {
+        width:40px;
+        background:#dadada;
+         
+        border-top: 1px solid rgba(155,155,155,.99);
+        border-left: 1px solid rgba(155,155,155,.99);
+        border-bottom: 1px solid rgba(155,155,155,.99);
+        border-right: 1px solid rgba(155,155,155,.99);
+        border-radius:5px;
+      }
+
+      .box
+      {
+        background:white;
+        height:290px;
+        width:405px;
+        border-top: 1px solid rgba(155,155,155,.99);
+           border-left: 1px solid rgba(155,155,155,.99);
+        border-bottom: 1px solid rgba(155,155,155,.99);
+        border-right: 1px solid rgba(155,155,155,.99);
+        border-radius:10px;
+
+      }
+      input[type=button]{
+        font-weight:900;
+border-radius:0;
+        color:#319aff;
+border:0;
+        height:22px;
+        -webkit-appearance: none;}
+  *:not(input, checkbox, textarea) {
+            /*禁止文本选择*/
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+      }
+      input[type=checkbox]{
+        vertical-align:middle;
+height: 25px;
+        padding:10px;
+        width:25px;
+background:transparent;
+margin-top:-2px;
+
+
+      }
+      input[type=checkbox]:checked{
+
+
+background:rgba(155,155,155,.99);
+
+
+
+
+      }
+      input {
+          -webkit-appearance: none;
+background:transparent;
+      }
+      input[type=range] {
+  height:20px;
+    
+   user-select:none;
+padding:10px 0px 0px 0px;  
+  -webkit-appearance: none;
+}
+input[type=range]:focus {
+      
+   user-select:none;
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+  
+  height:  22px;
+  cursor: pointer;
+  
+  background: rgba(0,0,0,.16);
+  border-radius: 10px;
+  border: 1px solid rgba(155,155,155,.99);
+        
+   user-select:none;
+}
+      input[type=range]::-webkit-slider-thumb {
+          -webkit-appearance: none;
+    width: 15px;	height: 20px;
+border-radius:7px;
+ padding:0px;   
+border:none;
+  
+  background: rgba(155,155,155,.99);
+  cursor: pointer;
+  -webkit-appearance: none;
+        
+
+   user-select:none;
+  }
+      .text-truncate{
+    /* 超出显示省略号 */
+    text-overflow: ellipsis;
+    overflow: hidden;
+    /* 不换行 */
+    white-space: nowrap;
+}
+.dropdown-container{
+    margin-top: 30vh;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 34rem;
+}
+.dropdown-title-icon,
+.dropdown-arrow{
+    display: inline-flex;
+}
+.dropdown-title{
+    margin: 0 auto 0 1.8rem;
+}
+.dropdown-button{
+    font-weight: 400;
+    font-size: 1.7rem;
+    display: flex;
+    align-items: center;
+    padding: 0 1.8rem;
+}
+.dropdown-button svg{
+    /* 填充颜色 */
+    fill: #b1b8ca;
+    /* 设置过渡: 全部 时长 贝塞尔曲线 */
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.dropdown-button svg,
+.dropdown-button span{
+    /* 元素不对指针事件做出反应 */
+    pointer-events: none;
+}
+.dropdown-button:hover,
+.dropdown-button:focus{
+    color: #fff;
+}
+      *{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+  font-family: 'Poppins', sans-serif;
+}
+ input[type=text]  {
+background:rgba(155,155,155,.99);
+height:8px;
+   border:1px ;
+   -webkit-appearance: none;}
+input[type=text]:focus {
+outline:none;
+
+      }
+      
+      
+
+    </style>
+    <script>
+var w=410;
+ var h=25;
+               var x=(window.screen.height -410)/2;
+               var y=(window.screen.width -25)/0;
+                setWindowRect(x, y, w, h);</script>
+     
+  </head>
+  <body>
+    <div class=lan style=width:405px;>
+      
+      
+     <input type=button value=基础功能 style=width:70px onclick="page1('p1')">
+             <input type=button value=绘制功能 style=width:70px; onclick=page2()>
+             <input type=button value=其他功能 style=width:70px onclick=page3()>
+             <input type=button value=设定 style=width:70px onclick=page4()>
+      Cxtool V2.0
+    </div> 
+    <div class=box id="p1" style=border-radius:10px ><br>
+ <span style=color:transparent;>€€€</span>        <input type="range"  id="slider9" min="1" max="6"style="width:65%"  step="0.001" value="1"
+       onchange="Speedf(this)"/>全局速度<br><br>
+ <span style=color:transparent;>€€€</span>   <input type="range" class="switch"id="slider6" min="1" max="6" style="width:65%" step="0.001" value="1"
+                       onchange="MySpeedf(this)" />人物速度
+                 <br> <br>
+ <span style=color:transparent;>€€€</span>   <input type="range" id="slider7" min="1" max="30" style="width:65%" step="0.001" value="1"
+                       onchange="Fov(this)" />TPP视野<br><br>
+ <span style=color:transparent;>€€€</span>   <input type="range" id="slider8" min="90" max="150" style="width:65%" step="0.0001" value="90"
+                       onchange="Fov2(this)" />FPP视野<br><br>
+<span style=color:transparent;>€€€</span>  <input type="button" value="一键天亮"style='height:28px;width:60px;border-radius:5px;border:1px solid rgba(155,155,155,.99);background-color: transparent' onclick="yjtl()">
+      <input type="button" value="高帧率60"style='height:28px;width:60px;border-radius:5px;border:1px solid rgba(155,155,155,.99);background-color: transparent' onclick="gaozhen()"> <label><input class="switch-btn switch-btn animbg"type="checkbox"onclick="dat3(this)">大头</label>   <label><input class="switch-btn switch-btn animbg"type="checkbox"onclick="dat2(this)">范围</label>
+             <label><input class="switch-btn switch-btn animbg"type="checkbox"onclick="dat4(this)"checked>网络</label>
+<br><br>
+
+
+
+       <input type=button id="sqq"   name=sqqq value=收起 style="width:400px;background:rgba(0,0,0,.16);border:1px solid rgba(155,155,155,.99);border-radius:10px;float:top"onclick=sq()> 
+      </div>
+      <div class=box id="p2" style=border-radius:10px>
+      
+        <br>
+        <label><input class="switch-btn switch-btn animbg"type="checkbox"onclick="tianx(this)">天线</label><br><br>
+   <span style=color:transparent;>€€€</span>    
+        <br><br><br><br><br><br><br><br><br>
+        <input type=button id="sqq"   name=sqqq value=收起 style="width:400px;background:rgba(0,0,0,.16);border:1px solid rgba(155,155,155,.99);border-radius:10px;float:bottom" onclick=sq()> 
+      </div>
+        <div class=box id="p3" style=border-radius:10px>
+      <br>
+<br> <span style=color:transparent;>€€€</span>   <input type="button" id="button2" value="输入当前坐标" style='height:28px;width:100px;border-radius:5px;border:1px solid rgba(155,155,155,.99);background-color: transparent'onClick="Coordinatef(this);">
+           <input type="button" id="1"style='height:28px;width:60px;border-radius:5px;border:1px solid rgba(155,155,155,.99);background-color: transparent' value="移动" onclick="hx()"/>
+          
+  <input type="button" value="初始化" style='height:28px;width:60px;border-radius:5px;border:1px solid rgba(155,155,155,.99);background-color: transparent'onclick="nb666()">
+       <br>
+        <br><br>
+   <span style=color:transparent;>€€€</span>    <input type="text" id="X"  name="X"style="width:50%;background-color:transparent;border:2px solid #dadada;height:28px;"  > <input type="button" value="增大" style='height:28px;width:60px;border-radius:5px;border:1px solid rgba(155,155,155,.99);background-color: transparent' onclick="xq()"><input type="button" value="减小" style='height:28px;width:60px;border-radius:5px;border:1px solid rgba(155,155,155,.99);background-color: transparent' onclick="xh()"> 
+       <br><br>
+ <span style=color:transparent;>€€€</span>    <input type="text" name="Y" id="Y" style="width:50%;background-color:transparent;border:2px solid #dadada;height:28px;;"  ><input type="button" value="增大" style='height:28px;width:60px;border-radius:5px;border:1px solid rgba(155,155,155,.99);background-color: transparent' onclick="yq()"><input type="button" value="减小" style='height:28px;width:60px;border-radius:5px;border:1px solid rgba(155,155,155,.99);background-color: transparent' onclick="yh()"> 
+<br>     <br>
+   <span style=color:transparent;>€€€</span>     <input type="text" name="Z"  id="Z"style="width:50%;background-color:transparent;border:2px solid #dadada;height:28px;"  ><input type="button" value="增大" style='height:28px;width:60px;border-radius:5px;border:1px solid rgba(155,155,155,.99);background-color: transparent'onclick="zq()"><input type="button" value="减小" style='height:28px;width:60px;border-radius:5px;border:1px solid rgba(155,155,155,.99);background-color: transparent' onclick="zh()"> 
+            <br>
+        <br>
+       
+          
+          
+          <input type=button id="sqq"   name=sqqq value=收起 style="width:400px;background:rgba(0,0,0,.16);border:1px solid rgba(155,155,155,.99);border-radius:10px;float:bottom"  onclick=sq()> 
+      </div>
+        <div class=box id="p4" style=border-radius:10px>
+      <img style=height:90px;width:255px; src="http://gzb.lzlgzb.xyz/view.php/d8a19a4b678910913f5560e38d156116.png" />
+          <img style=height:60px;width:150px; src="http://gzb.lzlgzb.xyz/view.php/8fbdd4b0ddba90b6545393c2432e75a3.png" /> <br>
+ <input type="button" value="更换图标" style='height:28px;width:60px;border-radius:5px;border:1px solid rgba(155,155,155,.99);background-color: transparent;float:right;'onclick="nb666()"><br><br> <br> <br>  <input type=button id="sqq"   name=sqqq value=收起 style="width:400px;background:rgba(0,0,0,.16);border:1px solid rgba(155,155,155,.99);border-radius:10px;float:bottom" onclick=sq()> 
+      </div>
+    <script>
+     
+     p1.style.display='none';
+  p2.style.display='none';
+  p3.style.display='none';
+  p4.style.display='none';
+ var qq1=1;
+function page1(){
+
+
+var x=(window.screen.height -410)/2;
+               var y=(window.screen.width -320)/0;
+                setWindowRect(x, y, 410, 320);
+p2.style.display='none';
+  p3.style.display='none';
+  p4.style.display='none';
+
+
+ 
+    p1.style.display='block';
+
+
+
+}  
+
+
+
+
+function page2(){
+  
+
+               var x=(window.screen.height -410)/2;
+               var y=(window.screen.width -320)/0;
+                setWindowRect(x, y, 410, 320);
+p1.style.display='none';
+  p3.style.display='none';
+  p4.style.display='none';
+
+
+ 
+    p2.style.display='block';
+}
+function page3(){
+  
+ 
+               var x=(window.screen.height -410)/2;
+               var y=(window.screen.width -320)/0;
+                setWindowRect(x, y, 400, 320);
+p2.style.display='none';
+  p1.style.display='none';
+  p4.style.display='none';
+
+
+ 
+    p3.style.display='block';
+}
+function page4(){
+  
+
+               var x=(window.screen.height -410)/2;
+               var y=(window.screen.width -320)/0;
+                setWindowRect(x, y, 410, 320);
+p2.style.display='none';
+  p3.style.display='none';
+  p1.style.display='none';
+
+ 
+  p4.style.display='block';
+}
+
+
+
+function sq(){
+  
+  p1.style.display='none';
+  p2.style.display='none';
+  p3.style.display='none';
+  p4.style.display='none';
+var w=410;
+ var h=25;
+               var x=(window.screen.height -410)/2;
+               var y=(window.screen.width -25)/0;
+  setWindowRect(x, y, w, h);
+  
+}
+
+</script>
+
+    <script>
+
+
+function Speedf(input)
+{
+if (typeof addr84 === 'undefined'){
+        h5gg.clearResults();
+        h5gg.searchNumber('-980', 'F32', '0x00000000', '0x400000000');
+        h5gg.searchNearby('0.0005', 'F32', '0x164');
+        h5gg.searchNumber('-980', 'F32', '0x00000000', '0x400000000');
+h5gg.getResults('100','0', 'F32');
+
+count89 = h5gg.getResultsCount();
+r89 = h5gg.getResults(count89);
+  
+for (var i = 0; i < count89; i++) {
+  addr89 = r89[i].address;
+addr84=addr89 - -0x154
+  h5gg.setValue(addr84,input.value*1,'F32');
+  ;
+
+
+h5gg.clearResults()
+}}
+else{
+
+  
+
+  h5gg.setValue(addr84,input.value*1,'F32');
+}}
+
+
+function Fov(input) {
+                        if (typeof addr8 === 'undefined') {
+                            h5gg.clearResults();
+                            h5gg.searchNumber("256", 'F32', '0x00000000', '0x200000000');
+                            h5gg.searchNearby("4", 'I32', '0x20');
+                            h5gg.searchNearby('0.8', 'F32', '0x20');
+                            h5gg.searchNumber("256", 'F32', '0x00000000', '0x200000000');
+                            h5gg.getResults('100', 'F32');
+                            count8 = h5gg.getResultsCount();
+                            r8 = h5gg.getResults(count8);
+                            for (var i = 0; i < count8; i++) {
+                                addr8 = r8[i].address;
+                                h5gg.setValue(addr8, input.value * 256, 'F32');
+                                h5gg.clearResults()
+                            }
+                        }
+                        else {
+                            h5gg.setValue(addr8, input.value * 256, 'F32');
+                        }
+                    };
+
+
+function Fov2(inputq) { 
+  
+   if (typeof addr77 === 'undefined') {
+  h5gg.clearResults();
+                            h5gg.searchNumber("89.9", 'F32', '0x00000000', '0x200000000');
+                            h5gg.searchNearby("90", 'F32', '0x100');
+                            
+                            h5gg.searchNumber("90", 'F32', '0x00000000', '0x200000000');
+                            h5gg.getResults('100', 'F32');
+                            count1991 = h5gg.getResultsCount();
+                            r1991 = h5gg.getResults(count1991);
+                            for (var i = 0; i < count1991; i++) {
+                                addr77 = r1991[i].address;
+                              h5gg.setValue(addr77, inputq.value, 'F32');
+  h5gg.clearResults()
+                            }
+                     }
+                      else{
+           
+                            
+                        
+                                h5gg.setValue(addr77, inputq.value, 'F32');
+                                
+                            }
+      
+                     };
+      function yjtl() {
+
+
+h5gg.clearResults();
+h5gg.searchNumber(' 17.99', 'F32', '0x00000000', '0x200000000'); 
+h5gg.searchNearby('0.34', 'F32', '0x100'); 
+h5gg.editAll('8', 'F32');  
+
+
+
+    h5gg.searchNearby('0.4', 'F32', '0x100'); 
+    h5gg.editAll('8', 'F32');  
+    
+h5gg.clearResults();
+
+      }
+  function MySpeedf(inputa) {
+                        if (typeof addr3 === 'undefined') {
+                            h5gg.clearResults();
+                            h5gg.searchNumber("-2373.004", 'F32', '0x00000000', '0x200000000');
+                            h5gg.searchNearby("1", 'F32', '0x100');
+                            h5gg.searchNumber("1", 'F32', '0x00000000', '0x200000000');
+                            h5gg.getResults('100', 'F32');
+                            count3 = h5gg.getResultsCount();
+                            r3 = h5gg.getResults(count3);
+                            for (var i = 0; i < count3; i++) {
+                                addr3 = r3[i].address;
+                                h5gg.setValue(addr3, inputa.value * 1, 'F32');
+                                h5gg.clearResults()
+                            }
+                        }
+                        else {
+                          
+                            h5gg.setValue(addr3, inputa.value * 1, 'F32');
+                        }
+                    }
+      function gaozhen(){
+
+h5gg.clearResults();
+                            h5gg.searchNumber("-1.70142e+38", 'F32', '0x00000000', '0x400000000');
+                            h5gg.searchNearby("4.243991582918676e-314", 'F64', '0x100');
+        h5gg.searchNearby("30", 'F32', '0x20');
+                            h5gg.searchNumber("30", 'F32', '0x00000000', '0x200000000');
+        
+h5gg.editAll('60', 'F32');  
+    alert("60帧开启");
+h5gg.clearResults();
+
+
+      }
+      function dat4(w){
+  
+if(w.checked==false){
+
+   
+    h5gg.clearResults();
+    
+
+                h5gg.searchNumber('-2373.004', 'F32', '0x100000000', '0x160000000');
+
+                
+   h5gg.getResults('100','0','F32');
+  count71= h5gg.getResultsCount();
+
+     r71=h5gg.getResults(count71);
+     for (var i =0; i<count71;i++){addr71= r71[i].address;
+    
+ 
+    h5gg.setValue(addr71,'1', 'F32');}
+ 
+h5gg.clearResults();
+
+    
+  }else{
+for (var i =0; i<count71;i++){addr71= r71[i].address;
+    
+ 
+    
+                             
+      
+    h5gg.setValue(addr71,'-2373.004', 'F32');}
+				
+
+}}
+  
+
+  
+  function dat2(z){
+
+
+  
+if(z.checked==true){
+    
+  h5gg.clearResults();
+    h5gg.searchNumber('0.1285700053', 'F32', '0x100000000', '0x160000000'); 
+    h5gg.searchNearby('0.2', 'F32', '0x50');   
+    h5gg.searchNumber('0.2', 'F32', '0x100000000', '0x160000000'); 
+  h5gg.getResults('100','0','F32');
+  count133= h5gg.getResultsCount();
+
+     r133=h5gg.getResults(count133);
+     for (var i =0; i<count133;i++){addr133 = r133[i].address;
+    
+ 
+    h5gg.setValue(addr133,30, 'F32');}
+ 
+h5gg.clearResults();
+  
+  
+ 
+  
+    }else{
+   for (var i =0; i<count133;i++){addr133 = r133[i].address;
+
+    
+
+ 
+
+    h5gg.setValue(addr133,30, 'F32');}   
+    
+     
+ 
+			}}
+     
+                                     
+                                     
+function tianx(a){
+  
+
+  
+
+
+  
+if(a.checked==true){
+
+   
+    
+    h5gg.clearResults();
+h5gg.searchNumber('-5.140667156606297e-315', 'F64', '0x100000000', '0x200000000');
+   h5gg.getResults('2','0','F32');
+  count66 = h5gg.getResultsCount();
+
+     r11=h5gg.getResults(count66);
+     for (var i =0; i<count66;i++){addr66 = r11[i].address;
+    
+ 
+    h5gg.setValue(addr66,'7.186329346908974e+45','F64');}
+ 
+h5gg.clearResults();
+h5gg.searchNumber('-0.98875373602', 'F32', '0x100000000', '0x200000000'); 
+h5gg.searchNearby('-6.874347686909405e-41', 'F64', '0x8'); 
+ h5gg.searchNumber('-6.874347686909405e-41', 'F64', '0x100000000', '0x200000000'); 
+
+   h5gg.getResults('2','0','F32');
+  count22 = h5gg.getResultsCount();
+
+     r22=h5gg.getResults(count22);
+     for (var i =0; i<count22;i++){addr22 = r22[i].address;
+    
+ 
+    h5gg.setValue(addr22,'-6.874346696665740e-41','F64');}
+
+  h5gg.clearResults();
+  }else{
+for (var i =0; i<count66;i++){addr66 = r11[i].address;
+    
+ 
+    
+                             
+      
+    
+    h5gg.setValue(addr66,'-5.140667156606297e-315', 'F64');}
+for (var i =0; i<count22;i++){addr22 = r22[i].address;
+                              h5gg.setValue(addr22,'-6.874347686909405e-41', 'F64');}
+
+}
+}
+
+ 
+function dat3(e){
+
+
+
+  
+if(e.checked==true){
+
+   
+    h5gg.clearResults();
+    h5gg.searchNumber('3232863993', 'I32', '0x100000000', '0x160000000'); 
+    h5gg.searchNearby('1', 'F32', '0x10'); 
+    h5gg.searchNumber('1','F32','0x100000000', '0x160000000');
+   h5gg.getResults('100','0','F32');
+  count7 = h5gg.getResultsCount();
+var dat=prompt("输入倍数");
+     r7=h5gg.getResults(count7);
+     for (var i =0; i<count7;i++){addr7 = r7[i].address;
+    
+ 
+    h5gg.setValue(addr7,dat, 'F32');}
+ 
+h5gg.clearResults();
+
+    
+  }else{
+for (var i =0; i<count7;i++){addr7 = r7[i].address;
+    
+ 
+    
+                             
+      
+    h5gg.setValue(addr7,'1', 'F32');}
+				
+
+}}
+  function nb666() {
+   alert("耐心等待，请确保身边有99炮");
+
+ 	h5gg.clearResults();
+	h5gg.searchNumber('1088784512', 'I32', '0x00000000', '0x200000000');
+	h5gg.searchNearby('12', 'I32', '0x8');
+	h5gg.searchNumber('1088784512', 'I32', '0x00000000', '0x400000000');
+	count = h5gg.getResultsCount();
+	a = h5gg.getResults(count);
+	for (var i = 0; i < count; i++) {//ここで自分の位置を出力する
+		addr = a[i].address;
+		addr2 = addr - -0x4C
+		addrplx3 = "0x" + addr2.toString(16)
+		plxva2 = h5gg.getValue(addrplx3, "F32") //x座標
+		if ((plxva2 != 1.14794e-41)
+			&& (plxva2 != 1.4013e-45)
+			&& (plxva2 != 0)
+			&& (plxva2 <= 342300)
+			&& (plxva2 >= -342300)) {
+			addrplx2 = addrplx3 - -0x0
+			addrplx1 = "0x" + addrplx2.toString(16)
+			addrply2 = addrplx3 - -0x4
+			addrply1 = "0x" + addrply2.toString(16)
+			addrplz2 = addrplx3 - -0x8
+			addrplz1 = "0x" + addrplz2.toString(16)
+			plxva = h5gg.getValue(addrplx1, "F32") //x座標
+			plyva = h5gg.getValue(addrply1, "F32") //y座標
+			plzva = h5gg.getValue(addrplz1, "F32") //z座
+
+
+}
+   
+   }
+
+	
+
+
+
+				
+				h5gg.clearResults();
+				h5gg.searchNumber('1074020928', 'I32', '0x00000000', '0x400000000');
+				h5gg.searchNearby("1", 'F32', '0x50');
+				h5gg.searchNumber("1", 'F32', '0x00000000', '0x400000000');
+				h5gg.editAll("30", 'F32');
+				h5gg.clearResults();
+				h5gg.searchNumber('-2052', 'F32', '0x00000000', '0x400000000');
+				h5gg.searchNearby("1", 'F32', '0x50');
+				h5gg.searchNumber("1", 'F32', '0x00000000', '0x400000000');
+             h5gg.editAll("30", 'F32');
+			
+   			h5gg.clearResults();
+			h5gg.searchNumber('66014', 'I32', '0x00000000', '0x400000000'); 
+			h5gg.searchNearby('2097152', 'I32', '0x300');
+			h5gg.setFloatTolerance('400');
+			plxva = h5gg.getValue(addrplx1, "F32");
+			plyva = h5gg.getValue(addrply1, "F32");
+			plzva = h5gg.getValue(addrplz1, "F32");
+			h5gg.searchNearby(plxva, 'F32', '0x300');
+			h5gg.searchNearby(plyva, 'F32', '0x20');
+			h5gg.searchNumber(plxva, 'F32', '0x00000000', '0x400000000');
+			count1 = h5gg.getResultsCount();
+			b = h5gg.getResults(count1);
+			for (var i = 0; i < count1; i++) {//ロケ砲座標保存 x,y,z
+              
+			rtaddrx1 = b[i].address;
+			rtaddry2 = rtaddrx1 - -0x4;
+			rtaddry1 = "0x" + rtaddry2.toString(16);
+			rtaddrz2 = rtaddrx1 - -0x8;
+			rtaddrz1 = "0x" + rtaddrz2.toString(16);
+			
+			
+              
+              
+            }
+alert("初始化完成");
+}
+   function hx()  {
+
+var lon=document.getElementById('X').value;
+var wide=document.getElementById('Y').value;
+var tall=document.getElementById('Z').value;
+if (tglonoff = 1){
+if (typeof rtaddrx1 === 'undefined'){
+}else{
+for (var i = 0; i < count1; i++) {
+rtaddrx1 = b[i].address;
+rtaddry2=rtaddrx1 - -0x4
+rtaddry1 = "0x"+rtaddry2.toString(16)
+h5gg.setValue(rtaddrx1,lon, 'F32');
+h5gg.setValue(rtaddry1,wide, 'F32');
+rtaddrz2=rtaddrx1 - -0x8
+rtaddrz1 = "0x"+rtaddrz2.toString(16)
+h5gg.setValue(rtaddrz1,tall, 'F32');
+}}}
+}
+ function Coordinatef() {//自分の座標表示
+			plxva = h5gg.getValue(addrplx1, "F32");
+			plyva = h5gg.getValue(addrply1, "F32");
+			plzva = h5gg.getValue(addrplz1, "F32");
+var obx=document.getElementById('X');
+obx.value=plxva;
+var oby=document.getElementById('Y');
+oby.value=plyva;
+var obz=document.getElementById('Z');
+obz.value=plzva;
+			
+		}
+      
+	
+function xq(){
+  var plxva = h5gg.getValue(addrplx1, "F32");
+			var plyva = h5gg.getValue(addrply1, "F32");
+			var plzva = h5gg.getValue(addrplz1, "F32");
+  var o=200
+     var ax=plxva+o
+if (typeof rtaddrx1 === 'undefined') {
+				;
+			}
+			else {
+				for (var i = 0; i < count1; i++) {
+					rtaddrx1 = b[i].address;
+      
+		
+				
+					h5gg.setValue(rtaddrx1,ax, 'F32');
+				}
+			}
+		
+}
+			
+function xh(){
+  var plxva = h5gg.getValue(addrplx1, "F32");
+			var plyva = h5gg.getValue(addrply1, "F32");
+			var plzva = h5gg.getValue(addrplz1, "F32");
+  var o=200
+     var ax2=plxva-o
+if (typeof rtaddrx1 === 'undefined') {
+				;
+			}
+			else {
+				for (var i = 0; i < count1; i++) {
+					rtaddrx1 = b[i].address;
+      
+		
+				
+					h5gg.setValue(rtaddrx1,ax2, 'F32');
+				}
+			}
+		
+
+
+			
+
+}
+   
+function yq(){
+  var plxva = h5gg.getValue(addrplx1, "F32");
+			var plyva = h5gg.getValue(addrply1, "F32");
+			var plzva = h5gg.getValue(addrplz1, "F32");
+  var o=200
+  var ay=plyva+o
+if (typeof rtaddrx1 === 'undefined') {
+				;
+			}
+			else {
+				for (var i = 0; i < count1; i++) {
+					rtaddrx1 = b[i].address;
+					rtaddry2 = rtaddrx1 - -0x4;
+					rtaddry1 = "0x" + rtaddry2.toString(16);
+					h5gg.setValue(rtaddry1,plyva+20, 'F32');
+				}
+			}
+
+}
+   
+function yh(){
+
+var plxva = h5gg.getValue(addrplx1, "F32");
+			var plyva = h5gg.getValue(addrply1, "F32");
+			var plzva = h5gg.getValue(addrplz1, "F32");
+  var o=200
+  var ay2=plyva-o
+if (typeof rtaddrx1 === 'undefined') {
+				;
+			}
+			else {
+				for (var i = 0; i < count1; i++) {
+					rtaddrx1 = b[i].address;
+					rtaddry2 = rtaddrx1 - -0x4;
+					rtaddry1 = "0x" + rtaddry2.toString(16);
+					h5gg.setValue(rtaddry1,ay2, 'F32');
+				}
+			}
+
+}
+   
+function zq(){
+  var plxva = h5gg.getValue(addrplx1, "F32");
+			var plyva = h5gg.getValue(addrply1, "F32");
+			var plzva = h5gg.getValue(addrplz1, "F32");
+  var o=200
+  var q=400
+  var az=plzva+o
+if (typeof rtaddrx1 === 'undefined') {
+				;
+			}
+			else {
+				for (var i = 0; i < count1; i++) {
+					rtaddrx1 = b[i].address;
+					rtaddrz2 = rtaddrx1 - -0x8;
+					rtaddrz1 = "0x" + rtaddrz2.toString(16);
+					h5gg.setValue(rtaddrz1, az, 'F32');
+				}
+			
+        }
+
+}
+
+function zh(){
+var plxva = h5gg.getValue(addrplx1, "F32");
+			var plyva = h5gg.getValue(addrply1, "F32");
+			var plzva = h5gg.getValue(addrplz1, "F32");
+  var o=200
+  var q=400
+  var az2=plzva-q
+if (typeof rtaddrx1 === 'undefined') {
+				;
+			}
+			else {
+				for (var i = 0; i < count1; i++) {
+					rtaddrx1 = b[i].address;
+					rtaddrz2 = rtaddrx1 - -0x8;
+					rtaddrz1 = "0x" + rtaddrz2.toString(16);
+					h5gg.setValue(rtaddrz1,az2, 'F32');
+				}
+			
+        }
+}
+
+</script>
+    
+  </body>
+</html>
